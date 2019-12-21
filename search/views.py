@@ -50,11 +50,15 @@ def results_page(request):
     foot = soup.find('div', attrs={'id': 'foot'})
 
     random_text = RandomText.objects.filter(enabled=True)
-    random_text = random.choice(list(random_text)).text if random_text else None
 
-    ShowLog.objects.create(
-        shown=random_text
-    )
+    if random_text:
+        ShowLog.objects.create(
+            shown=random_text
+        )
+
+        random_text = random.choice(list(random_text)).text
+    else:
+        random_text = None
 
     return render(request, template_name='results_page.html', context={
         'search_results': search_results.prettify() if search_results else '',
