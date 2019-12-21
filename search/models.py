@@ -17,4 +17,4 @@ class ShowLog(models.Model):
         verbose_name_plural = "Show log"
 
     def __str__(self):
-        return self.shown.text
+        return self.shown.text if self.shown else "None"
