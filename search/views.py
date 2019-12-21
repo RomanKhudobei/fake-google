@@ -52,13 +52,11 @@ def results_page(request):
     random_text = RandomText.objects.filter(enabled=True)
 
     if random_text:
+        random_text = random.choice(list(random_text))
+
         ShowLog.objects.create(
             shown=random_text
         )
-
-        random_text = random.choice(list(random_text)).text
-    else:
-        random_text = None
 
     return render(request, template_name='results_page.html', context={
         'search_results': search_results.prettify() if search_results else '',
@@ -66,7 +64,7 @@ def results_page(request):
         'search_query': search_query,
         'appbar': appbar.prettify() if appbar else '',
         'foot': foot.prettify() if foot else '',
-        'random_text': random_text
+        'random_text': random_text.text if random_text else None
     })
 
 
