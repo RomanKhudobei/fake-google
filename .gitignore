@@ -1,0 +1,6 @@
+db.sqlite3
+local_*
+local
+.env
+__pycache__
+.idea
