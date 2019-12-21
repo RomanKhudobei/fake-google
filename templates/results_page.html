@@ -9296,6 +9296,12 @@ html:not(.zAoYTe) .Tg7LZd:focus {
             console.log('search', searchQuery);
             window.location.href = `/search?q=${searchQuery}`;
         });
+
+        document.querySelector('button[type=submit]').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const searchQuery = document.getElementsByClassName('gLFyf')[0].value;
+            window.location.href = `/search?q=${searchQuery}`;
+        });
     });
 </script>
 </body>
