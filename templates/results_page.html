@@ -7260,7 +7260,9 @@ html:not(.zAoYTe) .Tg7LZd:focus {
                                     Результати пошуку</h1>
                                     <div eid="bmn7Xcb4Aue45OUP9NOK4Ao" data-async-context="query:test" id="rso">
                                         <div class="bkWMgd"><h2 class="bNg8Rb">Результати веб-пошуку</h2>
-                                            <div id="random-text" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 25px;">{{ random_text|safe }}</div>
+                                            {% if random_text %}
+                                                <div id="random-text" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 25px;">{{ random_text|safe }}</div>
+                                            {% endif %}
                                             {{ search_results|safe }}
                                         </div>
                                     </div><!--z--></div>

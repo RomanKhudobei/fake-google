@@ -50,7 +50,7 @@ def results_page(request):
     foot = soup.find('div', attrs={'id': 'foot'})
 
     random_text = RandomText.objects.filter(enabled=True)
-    random_text = random.choice(list(random_text))
+    random_text = random.choice(list(random_text)).text if random_text else None
 
     ShowLog.objects.create(
         shown=random_text
@@ -62,7 +62,7 @@ def results_page(request):
         'search_query': search_query,
         'appbar': appbar.prettify() if appbar else '',
         'foot': foot.prettify() if foot else '',
-        'random_text': random_text.text
+        'random_text': random_text
     })
 
 
