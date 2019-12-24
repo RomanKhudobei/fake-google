@@ -1,5 +1,6 @@
 import random
 
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -17,6 +18,9 @@ def main_search_page(request):
 def results_page(request):
     search_query = request.GET.get('q')
     start = request.GET.get('start')
+
+    if request.META['HTTP_HOST'] == '46.200.74.26':
+        return HttpResponseRedirect(f'http://google.com/search?q={search_query}')
 
     if search_query is None:
         return redirect(reverse('main_search_page'))
@@ -43,7 +47,7 @@ def results_page(request):
                 first_child.extract()
 
     if search_results is None:
-        return redirect(reverse('error'))
+        return render(request, '404.html', {'search_query': search_query})
 
     appbar = soup.find('div', {'id': 'appbar'})
     extrares = soup.find('div', attrs={'id': 'extrares'})
