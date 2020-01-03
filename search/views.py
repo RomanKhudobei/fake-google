@@ -19,7 +19,7 @@ def results_page(request):
     search_query = request.GET.get('q')
     start = request.GET.get('start')
 
-    if request.META['HTTP_HOST'] == '46.200.74.26':
+    if request.META['HTTP_HOST'] == '46.200.74.26' and request.GET.get('r') is None:
         return HttpResponseRedirect(f'http://google.com/search?q={search_query}')
 
     if search_query is None:
